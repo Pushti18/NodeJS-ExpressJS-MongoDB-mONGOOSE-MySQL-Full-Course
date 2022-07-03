@@ -1,3 +1,3 @@
-# NodeJS-ExpressJS-MongoDB-mONGOOSE-MySQL-Full-Course
+# NodeJS-ExpressJS-MongoDB-MONGOOSE-MySQL-Full-Course
 
 teasting
