@@ -1,9 +1,10 @@
 function everyNth(str, n) {
-  let p = "";
-  for (let i = 0; i < str.length; i = i + n) {
-    p = p + str.charAt(i);
+  let s = "";
+  for (let i = 0; i < str.length; ) {
+    s += str.charAt(i);
+    i += n;
   }
-  return p;
+  return s;
 }
 let ans = everyNth("Code", 3);
 console.log(ans);
