@@ -27,7 +27,7 @@ switch (b) {
       readline.question("Enter file name that is to be written : ")
     );
     const c = String(readline.question("Enter text for file: "));
-    // const a = `${file1}`;
+
     fs.writeFile(`${file1}`, c, function (err) {
       if (err) throw err;
       console.log("File is written successfully.");
@@ -38,7 +38,7 @@ switch (b) {
       readline.question("Enter file name that is to be updated : ")
     );
     const i = "\n" + String(readline.question("Enter text for file : "));
-    // const j = `${file2}`;
+
     fs.appendFile(
       `${file2}`,
       i,
@@ -56,8 +56,7 @@ switch (b) {
       readline.question("Enter file name that is to be renamed : ")
     );
     const fileNew = String(readline.question("Enter new file name : "));
-    // const q = `${file3}`;
-    // const s = `${fileNew}`;
+
     fs.rename(`${file3}`, `${fileNew}`, (err) => {
       if (err) {
         console.log("Error renaming file...");
@@ -69,14 +68,14 @@ switch (b) {
     const file4 = String(
       readline.question("Enter file name that is to be deleted : ")
     );
-    // const f = `${file4}`;
+
     fs.unlinkSync(`${file4}`);
     break;
   case 6:
     const file5 = String(
       readline.question("Enter file name that is to be read : ")
     );
-    // const r = `${file5}`;
+
     fs.readFile(`${file5}`, "utf8", (err, data) => {
       if (err) {
         console.error(err);
@@ -86,7 +85,6 @@ switch (b) {
     });
     break;
   case 7:
-    // const z = "./";
     fs.readdir("./", (err, files) => {
       files.forEach((file) => {
         console.log(file);
