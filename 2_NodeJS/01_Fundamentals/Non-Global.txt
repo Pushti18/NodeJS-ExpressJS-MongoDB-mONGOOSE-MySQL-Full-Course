@@ -1,0 +1,1 @@
+Example of Non-Global Core Module...!
