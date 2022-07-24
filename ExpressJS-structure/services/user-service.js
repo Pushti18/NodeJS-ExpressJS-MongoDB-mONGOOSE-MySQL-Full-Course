@@ -1,33 +1,155 @@
 class UserService {
   constructor() {
     this.userConfig = require("../config/user-config");
+    this.userModel = require("../models/users");
   }
 
   checkUserCredentials(email, password) {
-    if (email !== this.userConfig.email) {
+    //create database query and check from daatabase
+
+    if (email != this.userConfig.email) {
       return {
         status: false,
-        message: "email not verified",
+        message: "Email not verified!",
       };
-    } else if (password !== this.userConfig.password) {
+    } else if (password != this.userConfig.password) {
       return {
         status: false,
-        message: "password invalid",
+        message: "Invalid Password!",
       };
     } else if (
-      email == this.userConfig.email &&
-      password !== this.userConfig.password
+      email === this.userConfig.email &&
+      password === this.userConfig.password
     ) {
       return {
         status: true,
-        message: "user verified",
+        message: "User varified",
       };
     } else {
       return {
+        status: false,
+        message: "Invalid Credentials",
+      };
+    }
+  }
+
+  async createUser(userData) {
+    try {
+      //Save Method
+      // let userObj = new this.userModel(userData)
+      // let queryResponse = await userObj.save()
+
+      //Create
+      let queryResponse = await this.userModel.create(userData);
+
+      return {
         status: true,
-        message: "invalid credential",
+        data: queryResponse,
+      };
+    } catch (err) {
+      console.log(err);
+      return {
+        status: false,
+        message: "Error in services",
+      };
+    }
+  }
+
+  async findUser(userEmail) {
+    try {
+      //findOne function -> return singe document (if user exists) else it return null (if user not found)
+
+      // let user = await this.userModel.findOne({email: userEmail})
+      // user["dob"] = new Date()
+      //find function -> return array of object (multiple document) else it will return [] (if no data found)
+
+      //.lean() -> Convert mongodb object document to plain javascript document
+
+      return {
+        status: true,
+        data: user,
+      };
+    } catch (err) {
+      console.log(err);
+      return {
+        status: false,
+        message: "Error in services while finding user",
+      };
+    }
+  }
+
+  async getAllUsers() {
+    try {
+      //find method
+      let allUsers = await this.userModel.find().lean();
+
+      //agregate function
+
+      return {
+        status: true,
+        data: allUsers,
+      };
+    } catch (err) {
+      console.log(err);
+      return {
+        status: false,
+        message: "Error in services while all user",
+      };
+    }
+  }
+
+  async deleteUser(userEmail) {
+    try {
+      //findOneAndDelete -> delete single document from database , response -> deleted user data
+      let deleteUser = await this.userModel.findOneAndDelete({
+        email: userEmail,
+      });
+
+      //deleteMany -> It will delete multiple document
+
+      return {
+        status: true,
+        data: userEmail,
+      };
+    } catch (error) {
+      console.log(err);
+      return {
+        status: false,
+        message: "Error in services while delete user",
+      };
+    }
+  }
+
+  async updateUser(userData) {
+    try {
+      //findOneAndUpdate -> return old data of user. {options -> (new:true)}, parameters 1.query(match) ,2. the data/fields to update
+      let updateUser = await this.userModel.findOneAndUpdate(
+        { email: userData.email },
+        {
+          $set: {
+            name: userData.name,
+            mobile_number: userData.mobile_number,
+            age: userData.age,
+          },
+        },
+        { new: true }
+      );
+
+      return {
+        status: true,
+        data: updateUser,
+      };
+
+      //updateOne -> update only single document. Similar to findOneAndUpdate method
+      //updateMany -> it will update multiple data.
+    } catch {
+      console.log(err);
+      return {
+        status: false,
+        message: "Error in services while updating user",
       };
     }
   }
 }
+
 module.exports = new UserService();

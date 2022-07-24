@@ -21,7 +21,7 @@ class App {
     };
 
     //   this.helperResponse = require("./helpers/HelperResponse")
-    //   this.database = require("./database/Database")
+    this.database = require("./database/Database");
     //   this.config = require("./config/Config")
     this.app = this.express();
 
