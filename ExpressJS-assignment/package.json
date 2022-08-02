@@ -1,5 +1,5 @@
 {
-  "name": "expressjs-structure",
+  "name": "expressjs-assignment",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bind": "^0.1.7",
     "body-parser": "^1.20.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -23,5 +22,6 @@
     "mongoose": "^6.5.0",
     "path": "^0.12.7",
     "request": "^2.88.2"
-  }
+  
+}
 }

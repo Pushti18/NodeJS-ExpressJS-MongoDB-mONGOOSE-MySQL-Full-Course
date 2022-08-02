@@ -59,8 +59,8 @@ class UserController {
 
   async findUser(req, res) {
     try {
-      let email = req.params.email;
-      let findUser = await this.userservice.findUser(email);
+      // let email = req.params.email
+      let findUser = await this.userservice.findUser(req.body.email);
       if (findUser.status) {
         res.status(200).send({
           status: true,
@@ -69,7 +69,7 @@ class UserController {
       } else {
         res.status(400).send({
           status: false,
-          message: "Error in inserting user",
+          message: "Error in finding user",
         });
       }
     } catch (err) {
@@ -83,7 +83,7 @@ class UserController {
 
   async getuser(req, res) {
     try {
-      let allUser = await this.userService.getAllUsers();
+      let allUser = await this.userservice.getAllUsers();
       if (allUser.status) {
         res.status(200).send({
           status: true,
@@ -156,8 +156,9 @@ class UserController {
     try {
       let userData = {
         user_id: this.mongoose.Types.ObjectId(req.body.user_id),
-        id_card: req.body.id_card,
-        roll_number: req.body.roll_number,
+        // note_id: req.body.note_id,
+        detail: req.body.detail,
+        subject: req.body.subject,
       };
       console.log("userData", userData);
       let queryResponse = await this.userservice.insertUserData(userData);

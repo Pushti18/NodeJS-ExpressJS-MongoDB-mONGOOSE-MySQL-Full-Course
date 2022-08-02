@@ -13,51 +13,47 @@ class IndexRoute {
         message: "I got the response",
       });
     });
-    this.router.get(
-      "/get-weather",
-      this.weatherController.getWeatherDetails.bind(this.weatherController)
-    );
 
     this.router.post(
       "/verify-user",
       this.userController.verifyUser.bind(this.userController)
-    );
+    ); //done
 
     this.router.post(
       "/create-user",
       this.userController.createUser.bind(this.userController)
-    );
+    ); //done
 
     this.router.get(
-      "/find-user/email",
+      "/find-user",
       this.userController.findUser.bind(this.userController)
-    );
+    ); //done
 
     this.router.get(
       "/all-users",
       this.userController.getuser.bind(this.userController)
-    );
+    ); //no-need code
 
     this.router.delete(
       "/delete-users",
       this.userController.deleteUser.bind(this.userController)
-    );
+    ); //done
 
     this.router.patch(
       "/update-user",
       this.userController.updateUser.bind(this.userController)
-    );
+    ); //done
 
     //Api to insert-data in user data collection
     this.router.post(
-      "/insert-user-data",
+      "/insert-user-note",
       this.userController.insertUserData.bind(this.userController)
-    );
+    ); //done
 
     this.router.get(
-      "/collect-user-data/:id",
+      "/collect-user-note/:id",
       this.userController.collectUserData.bind(this.userController)
-    );
+    ); //done
   }
 }
 

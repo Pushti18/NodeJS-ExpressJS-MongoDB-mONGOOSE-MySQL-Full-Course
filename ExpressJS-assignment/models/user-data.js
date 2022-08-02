@@ -5,13 +5,13 @@ var userDataSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "users",
   },
-  id_card: {
+  subject: {
     type: String,
     default: "",
   },
-  roll_number: {
-    type: Number,
-    default: 0,
+  detail: {
+    type: String,
+    default: "",
   },
 });
 

@@ -60,7 +60,7 @@ class UserService {
     try {
       //findOne function -> return singe document (if user exists) else it return null (if user not found)
 
-      // let user = await this.userModel.findOne({email: userEmail})
+      let user = await this.userModel.findOne({ email: userEmail });
       // user["dob"] = new Date()
       //find function -> return array of object (multiple document) else it will return [] (if no data found)
 
@@ -188,8 +188,8 @@ class UserService {
             email: 1,
             mobile_number: 1,
             age: 1,
-            id_card: "$userData.id_card",
-            roll_number: "$userData.roll_number",
+            subject: "$userData.subject",
+            detail: "$userData.detail",
           },
         },
       ]);
