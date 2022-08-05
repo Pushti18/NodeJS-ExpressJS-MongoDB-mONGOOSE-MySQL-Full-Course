@@ -188,8 +188,8 @@ class UserService {
             email: 1,
             mobile_number: 1,
             age: 1,
-            subject: "$userData.subject",
-            detail: "$userData.detail",
+            WriteNotes: "$userData.WriteNotes",
+            Notes: "$userData.Notes",
           },
         },
       ]);

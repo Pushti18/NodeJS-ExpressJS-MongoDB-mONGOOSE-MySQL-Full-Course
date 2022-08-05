@@ -157,8 +157,8 @@ class UserController {
       let userData = {
         user_id: this.mongoose.Types.ObjectId(req.body.user_id),
         // note_id: req.body.note_id,
-        detail: req.body.detail,
-        subject: req.body.subject,
+        Notes: req.body.Notes,
+        WriteNotes: req.body.WriteNotes,
       };
       console.log("userData", userData);
       let queryResponse = await this.userservice.insertUserData(userData);

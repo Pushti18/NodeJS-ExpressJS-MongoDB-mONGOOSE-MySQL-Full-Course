@@ -5,11 +5,11 @@ var userDataSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "users",
   },
-  subject: {
+  WriteNotes: {
     type: String,
     default: "",
   },
-  detail: {
+  Notes: {
     type: String,
     default: "",
   },
