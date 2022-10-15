@@ -28,9 +28,7 @@ class jobController{
     {
         try{
             let jobData = {
-                // name:  req.body.name,
-                // email: req.body.email,
-                // password: req.body.password,
+            
                 admin: req.body.admin,
                 name: req.body.name,
                 experience: req.body.experience,
@@ -75,10 +73,9 @@ class jobController{
 
     async findJob(req, res){
         try{
-            // let id = req.body._id
-            // let email = req.params.email
+      
             let findjob = await this.jobservice.findjob(req.body._id,req.body.name,req.body.experience,req.body.salary)
-            //console.log(findjob);
+
             if(findjob.status)
             {
                 res.status(200).send({
@@ -141,7 +138,7 @@ class jobController{
                 res.status(200).send({
                     status: true,
                     message: 'job deleting job',
-                   // data: deletejob.data,
+               
                 })
             }
             else
@@ -191,40 +188,7 @@ class jobController{
         }
     }
 
-    // async insertJobData(req, res){
-    //     try{
-    //         let jobData = {
-    //             job_id: this.mongoose.Types.ObjectId(req.body.job_id),
-    //             // note_id: req.body.note_id,
-    //             detail: req.body.detail,
-    //             subject: req.body.subject,
-    //         }
-    //         console.log("jobData", jobData);
-    //         let queryResponse = await this.jobservice.insertjobData(jobData);
-    //         if(queryResponse.status)
-    //         {
-    //             res.status(200).send({
-    //                 status: true,
-    //                 message: 'job Data Inserted',
-    //             })
-    //         }
-    //         else
-    //         {
-    //             res.status(400).send({
-    //                 status: false,
-    //                 message: 'Error in inserting job data',
-    //             })
-    //         }
-    //     }
-    //     catch(err)
-    //     {
-    //         console.log(err);
-    //         return{
-    //             status: false,
-    //             message: 'error in controller while inserting job data',
-    //         }
-    //     }
-    // }
+    
 
     async collectJobData(req, res)
     {

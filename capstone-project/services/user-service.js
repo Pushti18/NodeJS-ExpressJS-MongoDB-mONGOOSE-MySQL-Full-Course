@@ -7,7 +7,7 @@ class UserService{
 
     checkUserCredentials(email, password){
 
-        //create database query and check from daatabase
+      
 
         if(email != this.userConfig.email){
             return {
@@ -38,11 +38,7 @@ class UserService{
 
     async createUser(userData){
         try{
-            //Save Method
-            // let userObj = new this.userModel(userData)
-            // let queryResponse = await userObj.save()
-
-            //Create
+           
             let queryResponse = await this.userModel.create(userData)
 
             return {
@@ -63,16 +59,9 @@ class UserService{
     async findUser(userEmail)
     {
         try{
-            //findOne function -> return singe document (if user exists) else it return null (if user not found)
-
+            
             let user = await this.userModel.findOne({email: userEmail})
-            // user["dob"] = new Date()
-            //find function -> return array of object (multiple document) else it will return [] (if no data found)
-
-
-
-            //.lean() -> Convert mongodb object document to plain javascript document
-
+            
             return {
                 status: true,
                 data: user,
@@ -90,11 +79,8 @@ class UserService{
     async getAllUsers()
     {
         try{
-            //find method
+           
             let allUsers = await this.userModel.find().lean()
-
-            //agregate function
-
 
             return {
                 status: true,
@@ -113,10 +99,8 @@ class UserService{
     async deleteUser(userEmail)
     {
         try{
-            //findOneAndDelete -> delete single document from database , response -> deleted user data
+           
             let deleteUser = await this.userModel.findOneAndDelete({email: userEmail})
-
-            //deleteMany -> It will delete multiple document
 
             return {
                 status: true,
@@ -136,7 +120,7 @@ class UserService{
     {
         try{
             
-            //findOneAndUpdate -> return old data of user. {options -> (new:true)}, parameters 1.query(match) ,2. the data/fields to update
+           
             let updateUser = await this.userModel.findOneAndUpdate({email: userData.email},{
                 $set: {
                     name: userData.name,
@@ -150,8 +134,6 @@ class UserService{
                 data: updateUser,
             }
 
-            //updateOne -> update only single document. Similar to findOneAndUpdate method
-            //updateMany -> it will update multiple data.
         }
         catch{
             console.log(err);
@@ -199,8 +181,7 @@ class UserService{
                     $project: {
                         name: 1,
                         email: 1,
-                        //mobile_number: 1,
-                       // age: 1,
+                        
                         subject: '$userData.subject',
                         detail: '$userData.detail'
                     }

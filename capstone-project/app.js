@@ -11,31 +11,25 @@ class App{
       this.bodyParser = require("body-parser")
       this.urlencodedParser = this.bodyParser.urlencoded({ extended: false })  
       this.cookieParser = require('cookie-parser');
-    //   this.logger = require('morgan');
+
       this.expressSession = require("express-session")
       this.indexRouter = require('./routes/index');
-      // IMPORT ROUTE
-      // this.microsoftRouter = require('./routes/microsoft');
+
       this.cors = require( 'cors' )
       this.corsOptions = {
         origin: '*',
-        optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+        optionsSuccessStatus: 200 
       }
-      
-    //   this.helperResponse = require("./helpers/HelperResponse")
+     
       this.database = require("./database/Database")
-    //   this.config = require("./config/Config")
+
       this.app = this.express();
-      
-      
-      // view engine setup
+    
       this.app.set("views", this.path.join(__dirname, "views"));
       this.app.set("view engine", "ejs");
-    //   this.app.use(this.logger('dev'));
       this.app.use(this.express.json());
       this.app.use(this.expressLayout)
       this.app.set("layout", "layout/layout", true)
-    //   this.app.set("layout", "layout/guest", true)
       this.app.set("extractScripts", true)
       this.app.use(this.express.urlencoded({ extended: false }));
       this.app.use(this.cookieParser());
@@ -44,7 +38,7 @@ class App{
       this.app.use(this.expressSession({
         secret: process.env.SECRET_KEY,
         cookie: {
-          maxAge: 24 * 60 * 60 * 1000 // 24 hours
+          maxAge: 24 * 60 * 60 * 1000 
         },
         resave: true,
         saveUninitialized: true

@@ -1,13 +1,12 @@
 class jobService{
     constructor(){
-        // this.jobConfig = require('../config/job-config');
         this.jobModel = require('../models/job-data')
-        // this.jobDataModel = require('../models/job-data')
+    
     }
 
     checkjobCredentials(email, password){
 
-        //create database query and check from daatabase
+      
 
         if(email != this.jobConfig.email){
             return {
@@ -38,11 +37,7 @@ class jobService{
 
     async createjob(jobData){
         try{
-            //Save Method
-            // let jobObj = new this.jobModel(jobData)
-            // let queryResponse = await jobObj.save()
-
-            //Create
+           
             let queryResponse = await this.jobModel.create(jobData)
 
             return {
@@ -63,10 +58,10 @@ class jobService{
     async findjob(_id)
     {
         try{
-            //findOne function -> return singe document (if job exists) else it return null (if job not found)
+            
 
             let job = await this.jobModel.findOne({_id:_id})
-            // console.log("------"+job);
+          
             return {
                 status: true,
                 data: job,
@@ -85,11 +80,8 @@ class jobService{
     async getAlljobs()
     {
         try{
-            //find method
+          
             let alljobs = await this.jobModel.find().lean()
-
-            //agregate function
-
 
             return {
                 status: true,
@@ -108,10 +100,8 @@ class jobService{
     async deletejob(name)
     {
         try{
-            //findOneAndDelete -> delete single document from database , response -> deleted job data
+          
             let deletejob = await this.jobModel.findOneAndDelete({_name: name})
-
-            //deleteMany -> It will delete multiple document
 
             return {
                 status: true,
@@ -131,11 +121,11 @@ class jobService{
     {
         try{
             
-            //findOneAndUpdate -> return old data of job. {options -> (new:true)}, parameters 1.query(match) ,2. the data/fields to update
+            
             let updatejob = await this.jobModel.findOneAndUpdate({_id:jobData._id},{
                 $set: {
                     name: jobData.name,
-                    //name: jobData.name,
+              
                     experience: jobData.experience,
                     salary: jobData.salary
                 }
@@ -146,8 +136,6 @@ class jobService{
                 data: updatejob,
             }
 
-            //updateOne -> update only single document. Similar to findOneAndUpdate method
-            //updateMany -> it will update multiple data.
         }
         catch{
             console.log(err);
@@ -195,8 +183,7 @@ class jobService{
                     $project: {
                         name: 1,
                         email: 1,
-                        //mobile_number: 1,
-                       // age: 1,
+                       
                         subject: '$jobData.subject',
                         detail: '$jobData.detail'
                     }

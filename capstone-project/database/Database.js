@@ -5,7 +5,7 @@ class Database{
     }
 
     connect(){
-        // this.mongoose.connect('mongodb://localhost:27017/express-structure')
+       
         this.mongoose.connect(process.env.MONGO_CONNSTR, {
             useNewUrlParser: true,
             useUnifiedTopology: true,

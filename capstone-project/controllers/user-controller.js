@@ -9,13 +9,13 @@ class UserController{
     }
 
     async verifyUser(req, res){
-        //Fetch the credentials from the request object
-        let userEmail = req.body.email         //req.params.variable, req.query.variable
+       
+        let userEmail = req.body.email        
         let userPassword  = req.body.password
-        //Pass that credentials inside service function
+   
         let serviceResponse = await this.userservice.checkUserCredentials(userEmail,userPassword) 
         console.log('ServiceResponse',serviceResponse)
-        //Send the proper response to the user
+    
         let resStatus = 200
         if(serviceResponse.status != true)
         {
@@ -32,8 +32,7 @@ class UserController{
                 name:  req.body.name,
                 email: req.body.email,
                 password: req.body.password,
-                //mobile_number: req.body.mobile_number,
-                //age: req.body.age,
+               
             }
             console.log("userData", userData);
             let queryResponse = await this.userservice.createUser(userData);
@@ -63,7 +62,7 @@ class UserController{
 
     async findUser(req, res){
         try{
-            // let email = req.params.email
+           
             let findUser = await this.userservice.findUser(req.body.email)
             if(findUser.status)
             {
@@ -150,7 +149,7 @@ class UserController{
     {
         try{
            
-            // let updateUser = req.body.email
+       
             let updateUser = await this.userservice.updateUser(req.body)
             if(updateUser.status)
             {
@@ -180,7 +179,7 @@ class UserController{
         try{
             let userData = {
                 user_id: this.mongoose.Types.ObjectId(req.body.user_id),
-                // note_id: req.body.note_id,
+              
                 detail: req.body.detail,
                 subject: req.body.subject,
             }

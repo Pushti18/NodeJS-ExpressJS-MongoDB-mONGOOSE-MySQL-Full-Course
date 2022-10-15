@@ -5,4 +5,4 @@ class UserConfig{
     }
 }
 
-module.exports = new UserConfig('hj@gmail.com','12345678');
+module.exports = new UserConfig('pushti@gmail.com','123456789');
